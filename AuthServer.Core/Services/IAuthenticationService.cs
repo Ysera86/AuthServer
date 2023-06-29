@@ -14,6 +14,6 @@ namespace AuthServer.Core.Services
         Task<Response<TokenDto>> CreateToken(LoginDto loginDto);
         Task<Response<TokenDto>> CreateTokenByRefreshToken(string refreshToken);
         Task<Response<NoDataDto>> RevokeRefreshToken(string refreshToken);
-        Task<Response<ClientTokenDto>> CreateTokenByClient(ClientLoginDto clientLoginDto); // ClientLoginDto 5e kdr appsettingste tutabilirim çok olmadığından
+        Response<ClientTokenDto> CreateTokenByClient(ClientLoginDto clientLoginDto); // ClientLoginDto 5e kdr appsettingste tutabilirim çok olmadığından
     }
 }
