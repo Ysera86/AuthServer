@@ -34,7 +34,7 @@ namespace AuthServer.Service.Services
             _repository = repository;
         }
 
-        public async Task<Response<TokenDto>> CreateToken(LoginDto loginDto)
+        public async Task<Response<TokenDto>> CreateTokenAsync(LoginDto loginDto)
         {
             if (loginDto == null)
             {
@@ -72,7 +72,7 @@ namespace AuthServer.Service.Services
             return Response<ClientTokenDto>.Success(token, 200);
         }
 
-        public async Task<Response<TokenDto>> CreateTokenByRefreshToken(string refreshToken)
+        public async Task<Response<TokenDto>> CreateTokenByRefreshTokenAsync(string refreshToken)
         {
             var refreshTokenFromDb = await _repository.Where(x => x.Code == refreshToken).SingleOrDefaultAsync();
             if (refreshTokenFromDb == null)
@@ -91,7 +91,7 @@ namespace AuthServer.Service.Services
             return Response<TokenDto>.Success(tokenDto, 200);
         }
 
-        public async Task<Response<NoDataDto>> RevokeRefreshToken(string refreshToken)
+        public async Task<Response<NoDataDto>> RevokeRefreshTokenAsync(string refreshToken)
         {
             var refreshTokenFromDb = await _repository.Where(x => x.Code == refreshToken).SingleOrDefaultAsync();
             if (refreshTokenFromDb == null)
