@@ -41,7 +41,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"email\": \"merve.ugursac34@gmail.com\",\r\n  \"password\": \"Password12*\"\r\n}",
+					"raw": "{\r\n  \"email\": \"merve.ugursac34@gmail.com\",\r\n  \"password\": \"Password12*\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -102,6 +102,227 @@
 						"api",
 						"user",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RefreshToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n  \"Token\": \"wFAi3LqH3IFyRx7wX9T5xMcGR6txN7G1L/MWs8T/PUQ=\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/auth/CreateTokenByRefreshToken",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"auth",
+						"CreateTokenByRefreshToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RevokeRefreshToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n  \"Token\": \"Rw9ld50WCsIC1gG4euhBew40wnclzYXFacsOkz9e3u0=\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/auth/RevokeRefreshToken",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"auth",
+						"RevokeRefreshToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/product/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"product",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Product",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n  \"name\": \"defter\",\r\n  \"price\": 200,\r\n  \"stock\": 55,\r\n  \"userId\": \"938967a0-d681-453b-8976-202d93ff539d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/product",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Product",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\": 2,\r\n  \"name\": \"defter\",\r\n  \"price\": 250,\r\n  \"stock\": 65,\r\n  \"userId\": \"938967a0-d681-453b-8976-202d93ff539d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/product",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"id\": 2,\r\n  \"name\": \"defter\",\r\n  \"price\": 250,\r\n  \"stock\": 65,\r\n  \"userId\": \"938967a0-d681-453b-8976-202d93ff539d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/product/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"product",
+						"2"
 					]
 				}
 			},

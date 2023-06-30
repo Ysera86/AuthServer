@@ -38,7 +38,7 @@ namespace AuthServer.API.Controllers
             return ActionResultInstance(await _productService.Update(productDto, productDto.Id));
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")] // api/product/2, {id} eklemeseydik querystringten almak zorunda kalacaktık : api/product?id=2
         public async Task<IActionResult> Delete(ProductDto productDto)
         {
             return ActionResultInstance(await _productService.Remove(productDto.Id));

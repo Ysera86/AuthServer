@@ -16,7 +16,7 @@ namespace SharedLibrary.Dtos
             Errors = new List<string>();
         }
 
-        public ErrorDto(string error, bool isShown)
+        public ErrorDto(string error, bool isShown): this()
         {
             Errors.Add(error);
             IsShown = isShown;
