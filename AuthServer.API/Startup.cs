@@ -72,7 +72,7 @@ namespace AuthServer.API
 
             // Options Pattern
             services.Configure<List<Client>>(Configuration.GetSection("Clients"));
-            services.Configure<CustomTokenOptions>(options => Configuration.GetSection("TokenOption"));
+            services.Configure<CustomTokenOptions>(Configuration.GetSection("TokenOption"));
 
             var tokenOption = Configuration.GetSection("TokenOption").Get<CustomTokenOptions>();
 
