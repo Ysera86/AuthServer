@@ -129,6 +129,9 @@ namespace AuthServer.API
 
             app.UseRouting();
 
+            // Authentication da olmalý. Sýralama önemli, 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
