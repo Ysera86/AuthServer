@@ -8,7 +8,6 @@ using AuthServer.Core.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json.Linq;
 using SharedLibrary.Dtos;
 using System;
 using System.Collections.Generic;
