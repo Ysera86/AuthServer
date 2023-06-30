@@ -6,7 +6,9 @@ using AuthServer.Core.Services;
 using AuthServer.Core.UnitOfWork;
 using AuthServer.Data;
 using AuthServer.Data.Repositories;
+using AuthServer.Service;
 using AuthServer.Service.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -69,8 +71,39 @@ namespace AuthServer.API
 
 
             // Options Pattern
-            services.Configure<CustomTokenOptions>(options => Configuration.GetSection("TokenOption"));
             services.Configure<List<Client>>(Configuration.GetSection("Clients"));
+            services.Configure<CustomTokenOptions>(options => Configuration.GetSection("TokenOption"));
+
+            var tokenOption = Configuration.GetSection("TokenOption").Get<CustomTokenOptions>();
+
+            // token geldiði zaman doðrulama kýsmý ( daðýtma ile ilgili deðil, gelen tokený doðrulama kýsmý)
+            services.AddAuthentication(opt =>
+            {
+                // þema : bayi ve kullanýcý olarak 2 ayrý login sistemi olsaydý 2 ayrý þema verirdik. burda ona þema denir. þuan tek bir defualt þema var
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme; // "Bearer"
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme; // > tokendan gelenle (yukarda) benim beklediðim (aþaðýda) eþleþtirme
+            })
+                // api cookie deðil de headerda token arasýn ..
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opts => 
+            {
+                opts.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                {
+                    ValidIssuer = tokenOption.Issuer, // token kimden geldi
+                    ValidAudience = tokenOption.Audience[0], // token benden istek yapabilir mi? (ilki olarak kendi adresimi yazdým : "www.authserver.com")
+                    IssuerSigningKey = SignService.GetSymmetricSecurityKey(tokenOption.SecurityKey),
+
+                    ValidateIssuerSigningKey = true, // imzayý doðrula
+                    ValidateAudience = true,
+                    ValidateIssuer = true,
+                    ValidateLifetime = true,
+
+                    // token ömürlerini kontrol etmek için : normalde lifetme + 5dk veriyor, farklý timezonelar arasý tolere etmek için , 5dk vermesin diye
+                    // çnk tek api tek makinede tek yerde. postmande kontrol ederken beklemeyelim diye.
+                    // skew >  sapma
+                    ClockSkew = TimeSpan.Zero
+
+                };
+            }); 
 
 
             //..
