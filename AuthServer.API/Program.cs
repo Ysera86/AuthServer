@@ -18,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using SharedLibrary.Extensions;
 using FluentValidation.AspNetCore;
 using AuthServer.API.Validations;
+using SharedLibrary.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -109,12 +110,18 @@ builder.Services.AddCustomTokenAuth(tokenOption);
 
 var app = builder.Build();
 
-if(app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    //app.UseCustomException();
+}
+// exception middleware
+app.UseCustomException();
 
 app.UseHttpsRedirection();
 app.UseRouting();

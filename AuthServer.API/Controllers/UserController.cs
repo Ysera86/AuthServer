@@ -3,6 +3,7 @@ using AuthServer.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SharedLibrary.Exceptions;
 using System.Threading.Tasks;
 
 namespace AuthServer.API.Controllers
@@ -22,6 +23,7 @@ namespace AuthServer.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
         {
+            throw new CustomException("Kendi exception middlewareimizi test amaçlı exception fırlattık, normalde kapat bu satırı");
             return ActionResultInstance(await _userService.CreateUserAsync(createUserDto));
         }
 
