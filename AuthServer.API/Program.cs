@@ -16,6 +16,8 @@ using AuthServer.Core.GenericServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SharedLibrary.Extensions;
+using FluentValidation.AspNetCore;
+using AuthServer.API.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //..
+
+// FluentValidation 
+builder.Services.AddFluentValidation(opt => opt.RegisterValidatorsFromAssemblyContaining(typeof(CreateUserDtoValidator)));
+
+// Validation hatalarýnda varsayýlan olarak FluentValidation error döndürmesin, benim oluþturduðum response dönsün
+// varsayýlan dönüþ tipini ezme.
+builder.Services.UseCustomValidationResponse();
 
 // DI Register
 // AddSingleton : Uygulama boyunca tek 1 instance
