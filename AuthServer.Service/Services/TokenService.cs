@@ -40,7 +40,8 @@ namespace AuthServer.Service.Services
                 //new Claim("Email", userApp.Email),
                 new Claim(JwtRegisteredClaimNames.Email, userApp.Email),
                 new Claim(ClaimTypes.Name, userApp.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("city", userApp.City)
             };
 
             claims.AddRange(audiences.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));

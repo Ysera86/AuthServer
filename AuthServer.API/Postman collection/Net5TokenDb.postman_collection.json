@@ -49,7 +49,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:44376/api/user/CreateUserRoles/merve",
+					"raw": "https://localhost:44376/api/user/CreateUserRoles/tatlis",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -59,7 +59,7 @@
 						"api",
 						"user",
 						"CreateUserRoles",
-						"merve"
+						"tatlis"
 					]
 				}
 			},
@@ -154,13 +154,43 @@
 			"response": []
 		},
 		{
-			"name": "CreateToken",
+			"name": "CreateToken for city = istanbul",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n  \"email\": \"merve.ugursac34@gmail.com\",\r\n  \"password\": \"Password12*\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/auth/createtoken",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"auth",
+						"createtoken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateToken for city = mugla",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"tatlis@gmail.com\",\r\n  \"password\": \"Password12*\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

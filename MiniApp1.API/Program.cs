@@ -1,26 +1,50 @@
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SharedLibrary.Configuration;
+using SharedLibrary.Extensions;
 
-namespace MiniApp1.API
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+//..
+builder.Services.Configure<CustomTokenOptions>(builder.Configuration.GetSection("TokenOption"));
+var tokenOption = builder.Configuration.GetSection("TokenOption").Get<CustomTokenOptions>();
+
+builder.Services.AddCustomTokenAuth(tokenOption);
+
+// dynamic claim için policy belirlemem lazým (þartname)
+builder.Services.AddAuthorization(opt =>
 {
-    public class Program
+    opt.AddPolicy("MuglaPolicy", policy =>
     {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+        policy.RequireClaim("city", "mugla");
+        //policy.RequireClaim("city", "mugla","newyork"); // 2side olur dersem
+    });
+});
+//..
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+//..
+app.UseAuthentication();
+//..
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
