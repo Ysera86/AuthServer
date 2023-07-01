@@ -2,6 +2,7 @@
 using AuthServer.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using SharedLibrary.Exceptions;
 using System.Threading.Tasks;
@@ -44,6 +45,12 @@ namespace AuthServer.API.Controllers
             // eğer bu şekilde düzgün vermeseydik 
             // HttpContext.User.Claims.Where(x => x.Type == "UserName").FirstOrDefault(); vs yapmam gerekirdi burada.
             return ActionResultInstance(await _userService.GetUserByNameAsync(HttpContext.User.Identity.Name));
+        }
+
+        [HttpPost("CreateUserRoles/{userName}")]
+        public async Task<IActionResult> CreateUserRoles(string userName)
+        {
+            return ActionResultInstance(await _userService.CreateUserRoles(userName));
         }
     }
 }

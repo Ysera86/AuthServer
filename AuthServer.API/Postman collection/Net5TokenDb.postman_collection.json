@@ -35,13 +35,103 @@
 			"response": []
 		},
 		{
-			"name": "Post User Copy",
+			"name": "CreateUserRoles",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/user/CreateUserRoles/merve",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"user",
+						"CreateUserRoles",
+						"merve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post User 2",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n  \"userName\": \"Deneme\",\r\n  \"email\": \"deneme@gmail.com\",\r\n  \"password\": \"Password12*\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/user",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUserWithException",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userName\": \"Merve\",\r\n  \"email\": \"merve.ugursac34@gmail.com\",\r\n  \"password\": \"Password12*\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/user/CreateUserWithException",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"user",
+						"CreateUserWithException"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post User FluentValidation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"merve.ugursac34_1@gmail.com\",\r\n  \"password\": \"Password12*\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

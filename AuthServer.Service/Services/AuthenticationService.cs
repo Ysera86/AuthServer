@@ -47,7 +47,7 @@ namespace AuthServer.Service.Services
             if (!await _userManager.CheckPasswordAsync(user, loginDto.Password))
                 return Response<TokenDto>.Fail("Email or Password error", 400, true); // vague message for malevolent users
 
-            var token = _tokenService.CreateToken(user);
+            var token = await _tokenService.CreateToken(user);
             var userRefreshToken = await _repository.Where(x => x.UserId == user.Id).SingleOrDefaultAsync();
             if (userRefreshToken == null)
                 await _repository.AddAsync(new UserRefreshToken { UserId = user.Id, Code = token.RefreshToken, Expiration = token.RefreshTokenExpiration });
@@ -81,7 +81,7 @@ namespace AuthServer.Service.Services
             if (user == null)
                 return Response<TokenDto>.Fail("User not found", 404, true);
 
-            var tokenDto = _tokenService.CreateToken(user);
+            var tokenDto =  await _tokenService.CreateToken(user);
             refreshTokenFromDb.Code = tokenDto.RefreshToken;
             refreshTokenFromDb.Expiration = tokenDto.RefreshTokenExpiration;
 
