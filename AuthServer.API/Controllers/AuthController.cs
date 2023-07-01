@@ -18,6 +18,8 @@ namespace AuthServer.API.Controllers
         }
 
         // api/auth/createtoken
+        // apisettings.json içinden audiencesta olanları ekleyeceği için, o APİlere istek yapabilir bu token
+        // audiencetan miniapi3 silersek, oluşturacağımız token ile o APİ'yeo token ile istek yapamayız.
         [HttpPost]
         public async Task<IActionResult> CreateToken(LoginDto loginDto)
         {
@@ -40,6 +42,7 @@ namespace AuthServer.API.Controllers
         }
 
         [HttpPost]
+        // üyelik sistemi olmayan api için : miniapi3
         public  IActionResult CreateTokenByClient(ClientLoginDto  clientLoginDto)
         {
             var result =  _authenticationService.CreateTokenByClient(clientLoginDto);
