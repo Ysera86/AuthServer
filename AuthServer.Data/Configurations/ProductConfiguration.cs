@@ -20,7 +20,7 @@ namespace AuthServer.Data.Configurations
             builder.HasKey(x => x.Id); // Gerek yok aslında. EfCore zaten proplara "Id" dediğim için anlicak.
             builder.Property(x => x.Name).IsRequired().HasMaxLength(200);
             builder.Property(x => x.Stock).IsRequired();
-            builder.Property(x => x.Price).HasColumnType("decimal(18,2");
+            builder.Property(x => x.Price).HasColumnType("decimal(18,2)");
             builder.Property(x => x.UserId).IsRequired();
         }
     }
