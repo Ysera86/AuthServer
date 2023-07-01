@@ -7,7 +7,10 @@ using System.Security.Claims;
 
 namespace MiniApp1.API.Controllers
 {
-    [Authorize]
+    //[Authorize(Roles = "admin2")] // olmayan bir yetki : 403 forbidden
+    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin,manager")]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StockController : ControllerBase
