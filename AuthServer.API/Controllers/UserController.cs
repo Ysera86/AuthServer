@@ -22,10 +22,18 @@ namespace AuthServer.API.Controllers
         // api/user
         [HttpPost]
         public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
+        {;
+            return ActionResultInstance(await _userService.CreateUserAsync(createUserDto));
+        }
+
+        // api/user
+        [HttpPost("[action]")]
+        public async Task<IActionResult> CreateUserWithException(CreateUserDto createUserDto)
         {
             throw new CustomException("Kendi exception middlewareimizi test amaçlı exception fırlattık, normalde kapat bu satırı");
             return ActionResultInstance(await _userService.CreateUserAsync(createUserDto));
         }
+
 
         // api/user
         [Authorize] // bu method mutlaka token istiyor.
