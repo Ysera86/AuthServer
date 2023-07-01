@@ -444,6 +444,36 @@
 			"response": []
 		},
 		{
+			"name": "CreateTokenByClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"clientId\": \"SpaApp\",\r\n  \"clientSecret\": \"secret\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44376/api/Auth/CreateTokenByClient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44376",
+					"path": [
+						"api",
+						"Auth",
+						"CreateTokenByClient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "MiniApi3.Get WeatherForecast",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
